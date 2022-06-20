@@ -6,14 +6,8 @@
 
 body {
     --hue: var(--hue-neutral);
-    padding: 0;
-    margin: 0;
-    display: flex;
-    width: 100vw;
-    height: 100vw;
-    justify-content: center;
-    align-items: center;
-    background-color: hsl(var(--hue), 100%, 20%);
+    padding: 20px;
+    background-color: rgb(22, 49, 136);
 }
 
 body.correct {
@@ -25,11 +19,16 @@ body.wrong {
 }
 
 .container {
-    width: 800px;
-    max-width: 80%;
+    width: 80%;
+    height: 80%;
     background-color: white;
-    border-radius: 5px;
-    padding: 10px;
+    margin: auto;
+    margin-top: 16%;
+    padding: 20px;
+    max-width: 35%;
+    max-height: 40%;
+    color: wheat;
+    border-radius: 60px;
     box-shadow: 0 0 10px 2px;
 }
 
@@ -44,7 +43,7 @@ body.wrong {
     --hue: var(--hue-neutral);
     border: 1px solid hsl(var(--hue), 100%, 30%);
     background-color: hsl(var(--hue), 100%, 50%);
-    border-radius: 5px;
+    border-radius: 60px;
     padding: 5px 10px;
     color: white;
     outline: none;
@@ -55,18 +54,33 @@ body.wrong {
     border-color: black;
 }
 
-.start-btn,
-.next-btn {
+.btn:focus {
+    border-color: red;
+    border-width: 10px;
+}
+
+.start-btn, .next-btn {
     font-size: 1.5rem;
     font-weight: bold;
     padding: 10px 20px;
     cursor: pointer;
+    border-width: 2px;
+    border-radius: 10px;
 }
 
 .controls {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.score {
+    display: block;
+    text-align: center;
+    font-style: italic;
+    font-size: larger;
+    font-family: 'Times New Roman', Times, serif;
+    color: black;
 }
 
 .hide {
