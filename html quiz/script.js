@@ -27,8 +27,6 @@ function startGame() {
     quizScore = 0;
 }
 
-
-
 function setnextQuestion() {
     resetState();
     showQuestion(shuffledQuestions[currentQuestionIndex])
@@ -37,16 +35,16 @@ function setnextQuestion() {
 
 
 function showQuestion(question) {
-    questionElement.innerText = question.question;
+    questionElement.innerText = question.question
+    questionElement.classList.remove('hide')
+    questionContainerElement.classList.remove('hide')
     question.answers.forEach((answer) => {
-        const button = document.createElement('button');
-        button.innerText = answer.text;
-        button.classList.add('btn');
-        if (answer.correct) {
-            button.dataset.correct = answer.correct;
-        }
+        const button = document.createElement('button')
+        button.innerText = answer.text
+        button.classList.add('btn')
+        button.dataset.correct = answer.correct
         button.addEventListener('click', selectAnswer)
-        answerButtonsElement.appendChild(button);
+        answerButtonsElement.appendChild(button)
     })
 }
 
@@ -61,10 +59,15 @@ function resetState() {
 }
 
 function selectAnswer(e) {
-    const selectedButton = e.target;
-    const correct = selectedButton.dataset.correct;
+    const selectedButton = e.target
+    const correct = selectedButton.dataset.correct
+
+    if (correct == 'true') {
+        quizScore++
+    }
 
     setStatusClass(document.body, correct)
+
     Array.from(answerButtonsElement.children).forEach((button) => {
         setStatusClass(button, button.dataset.correct)
     })
@@ -74,37 +77,25 @@ function selectAnswer(e) {
     } else {
         startButton.innerText = "restart"
         startButton.classList.remove("hide")
+        questionElement.classList.add('hide')
+        questionContainerElement.classList.add('hide')
+        document.getElementById('right-answers').innerText = `You got ${quizScore} out of ${shuffledQuestions.length} correct`
     }
-
-    if (selectedButton.dataset = correct) {
-        quizScore++
-    }
-    document.getElementById('right-answers').innerText = quizScore
 }
-
-
-
-
 
 function setStatusClass(element, correct) {
-    clearStatusClass(element);
-    if (correct) {
-        element.classList.add('correct');
+    clearStatusClass(element)
+    if (correct == 'true') {
+        element.classList.add('correct')
     } else {
-        element.classList.add('wrong');
+        element.classList.add('wrong')
     }
 }
-
-
-
 
 function clearStatusClass(element) {
     element.classList.remove('correct')
     element.classList.remove('wrong')
 }
-
-
-
 
 const questions = [{
         question: 'Which one of these is a JavaScript Framework?',
